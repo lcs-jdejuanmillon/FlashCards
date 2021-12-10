@@ -19,14 +19,21 @@ struct ContentView: View {
     var body: some View {
         ScrollView {
             //show question
+            HStack{
+                Spacer()
             Text(currentCard.question)
         
                 .font(.largeTitle)
                 .multilineTextAlignment(.center)
-            
+                Spacer()
+            }
             //Check answer
             Button(action: {
+                
+                //reveal animation
                 isAnswerShowing = true
+                withAnimation{
+                    isAnswerShowing = true }
             }, label: {
                 Text("Check")
             })
@@ -39,8 +46,11 @@ struct ContentView: View {
         
         //Check answer
         Button(action: {
-            currentCard = listOfCards.randomElement()!
             isAnswerShowing = false
+            withAnimation{
+                isAnswerShowing = false
+            }
+            currentCard = listOfCards.randomElement()!
         }, label: {
             Text("Another")
         })
