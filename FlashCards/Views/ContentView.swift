@@ -9,8 +9,12 @@ import SwiftUI
 
 struct ContentView: View {
     // MARK: Stored properties
+    // Store the card to work with
+    // It is randomly selected from the lsit of cards
     @State var currentCard = listOfCards.randomElement()!
     
+    //This controls whether the answer is visible
+    @State var isAnswerShowing = false
     // MARK: Computed properties
     var body: some View {
         ScrollView {
@@ -22,13 +26,13 @@ struct ContentView: View {
             
             //Check answer
             Button(action: {
-                
+                isAnswerShowing = true
             }, label: {
                 Text("Check")
             })
                 .buttonStyle(.bordered)
             Text(currentCard.answer)
-            
+                .opacity(isAnswerShowing ? 1.0 : 0.0)
     
             .font(.largeTitle)
             .multilineTextAlignment(.center)
@@ -39,6 +43,7 @@ struct ContentView: View {
         }, label: {
             Text("Another")
         })
+            .opacity(isAnswerShowing ? 1.0 : 0.0)
             .buttonStyle(.bordered)
     }
         
