@@ -22,7 +22,23 @@ struct ContentView: View {
             }, label: {
                 Text("Check")
             })
-        }
+                .buttonStyle(.bordered)
+        
+        Text("Mitochondria?")
+    
+            .font(.largeTitle)
+            .multilineTextAlignment(.center)
+        
+        //Check answer
+        Button(action: {
+            
+        }, label: {
+            Text("Another")
+        })
+            .buttonStyle(.bordered)
+    }
+        
+
         .padding()
     }
 }
