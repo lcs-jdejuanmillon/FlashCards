@@ -32,7 +32,7 @@ let listOfCards = [
     
     ,
    
-    Card(question: "What must we do at the start of a sentense?", answer: "Capitalize the first letter")
+    Card(question: "What must we do at the start of a sentence?", answer: "Capitalize the first letter")
     
     
     ,
