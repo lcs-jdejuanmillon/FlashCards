@@ -40,6 +40,7 @@ struct ContentView: View {
         //Check answer
         Button(action: {
             currentCard = listOfCards.randomElement()!
+            isAnswerShowing = false
         }, label: {
             Text("Another")
         })
