@@ -9,7 +9,7 @@ import Foundation
 
 //Defines the information we'll track
 //"Blueprint" for a card
-struct Card {
+struct Card: Equatable {
     let question: String
     let answer : String
 }

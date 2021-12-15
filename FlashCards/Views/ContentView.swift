@@ -12,7 +12,7 @@ struct ContentView: View {
     // Store the card to work with
     // It is randomly selected from the lsit of cards
     @State var currentCard = listOfCards.randomElement()!
-    
+    @State var previousCard = listOfCards.randomElement()!
     //This controls whether the answer is visible
     @State var isAnswerShowing = false
     // MARK: Computed properties
@@ -21,44 +21,41 @@ struct ContentView: View {
             //show question
             HStack{
                 Spacer()
-            Text(currentCard.question)
-        
-                .font(.largeTitle)
-                .multilineTextAlignment(.center)
+                Text(currentCard.question)
+                    .font(.largeTitle)
+                    .multilineTextAlignment(.center)
                 Spacer()
             }
             //Check answer
             Button(action: {
                 
                 //reveal animation
-                isAnswerShowing = true
-                withAnimation{
-                    isAnswerShowing = true }
+                withAnimation {
+                    isAnswerShowing = true
+                }
             }, label: {
                 Text("Check")
             })
                 .buttonStyle(.bordered)
             Text(currentCard.answer)
                 .opacity(isAnswerShowing ? 1.0 : 0.0)
-    
-            .font(.largeTitle)
-            .multilineTextAlignment(.center)
-        
-        //Check answer
-        Button(action: {
-            isAnswerShowing = false
-            withAnimation{
-                isAnswerShowing = false
-            }
-            currentCard = listOfCards.randomElement()!
-        }, label: {
-            Text("Another")
-        })
-            .opacity(isAnswerShowing ? 1.0 : 0.0)
-            .buttonStyle(.bordered)
-    }
-        
-
+                .font(.largeTitle)
+                .multilineTextAlignment(.center)
+            
+            Button(action: {
+                previousCard = currentCard
+                while previousCard == currentCard {
+                    currentCard = listOfCards.randomElement()!
+                }
+                withAnimation{
+                    isAnswerShowing = false
+                }
+            }, label: {
+                Text("Another")
+            })
+                .opacity(isAnswerShowing ? 1.0 : 0.0)
+                .buttonStyle(.bordered)
+        }
         .padding()
     }
 }
@@ -66,6 +63,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-.previewInterfaceOrientation(.landscapeLeft)
+            .previewInterfaceOrientation(.landscapeLeft)
     }
 }
